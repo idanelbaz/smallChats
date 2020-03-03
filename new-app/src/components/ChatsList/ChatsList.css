@@ -1,0 +1,39 @@
+.listsContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-color: aquamarine;
+}
+
+
+.chatsListContainer {
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: 100vh;
+    border-bottom: 1px solid lightgray;
+}
+
+.userChatsListContainer{
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    background-color: aquamarine;
+    justify-content: center;
+    max-height: 100vh;
+}
+
+
+
+@media only screen and (max-width: 860px) {
+    .chatsListContainer{
+        height: fit-content;
+        max-height: fit-content;
+    }
+}

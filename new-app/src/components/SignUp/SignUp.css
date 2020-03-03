@@ -1,0 +1,30 @@
+.SignUpContainer{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    margin: 0 auto;
+}
+
+.submitBtn{
+    width: 7rem;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+}
+
+.userInput{
+    padding: 0.3rem;
+    margin-top: 0.5rem;
+}
+
+.loginLink{
+    margin: 2rem auto 0;
+    cursor: pointer;
+    width: fit-content;
+}

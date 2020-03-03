@@ -1,0 +1,49 @@
+.createNewChatModalContainer{
+    position: absolute;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(160,160,160,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.createNewChatModal{
+    max-width: 30rem;
+    height: 25rem;
+    background-color: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.headerModalContainer{
+    height: fit-content;
+    padding: 1rem;
+}
+
+.createChatFormContainer{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+}
+
+.exitModal{
+    background-image: url("../../exit.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.colorInputNewChat{
+    margin-left: 1rem;
+}
+
+.inputLabelColor{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

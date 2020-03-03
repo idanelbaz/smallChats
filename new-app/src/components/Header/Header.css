@@ -1,0 +1,132 @@
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-height: 3rem;
+    border-bottom: 1px solid darkgrey;
+}
+
+.logoContainer {
+    padding-left: 2rem;
+}
+
+.menuContainer {
+    padding-right: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.menu{
+    background-image: url("../../menu.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.menuBtn {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    position: relative;
+}
+
+.Logo {
+    width: 48px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.openMenu{
+    width: 9rem;
+    height: 12rem;
+    background-color: white;
+    border: 1px solid lightgray;
+    position: relative;
+    top: 30px;
+    right: 115px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: auto;
+    z-index: 2;
+}
+
+.heyUser{
+    border-bottom: 1px solid gray;
+    height: 1.5rem ;
+    padding-bottom: 0.5rem;
+}
+
+.innerMenuContainer{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 100%;
+    padding: 0.7rem;
+}
+
+.logOutContainer{
+    height: fit-content;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.newChatContainer{
+    height: fit-content;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.userChatsContainer{
+    height: fit-content;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.logOutSvg{
+    background-image: url("../../logout.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+}
+
+.userChatsSvg{
+    background-image: url("../../userChats.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+}
+
+.newChatSvg{
+    background-image: url("../../createNewChat.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+}
+
+.coverAllPage{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+.none{
+    display: none;
+}
+
