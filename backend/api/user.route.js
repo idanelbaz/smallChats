@@ -1,49 +1,45 @@
-const userService = require('../services/userService.js');
 const express = require('express');
 const router = express.Router();
-
+const mongoose = require('mongoose');
+const User = require('../api/models/user');
 module.exports = router;
 
-
-
-// if need auth - use this
-function requireAuth(req, res, next) {
-    // const user = req.session.loggedinUser
-    // if (!user) return res.status(401).send('Unauthenticated');
-    next();
-}
-
-function requireAdmin(req, res, next) {
-    // const user = req.session.loggedinUser
-    // if (!user) return res.status(401).send('Unauthenticated');
-    // if (user.isAdmin===false) return res.status(403).send('UnPrivileged');
-    next();
-}
-
-//login
-
-router.post('/',async (req, res) => {
-    const user = req.body;
-    try {
-        const currUser = await userService.logIn(user);
-        req.session.loggedinUser = currUser[0];
-        await res.json(currUser[0]);
-    } catch(err) {
-        console.log('cant login in route');
-        res.status(401).send();
-    }
-});
 
 //signup
 
 router.post('/signup', async (req, res) => {
     const user = req.body;
+    const newUser = new User({
+        _id: new mongoose.Types.ObjectId(),
+        username: user.username,
+        password: user.password,
+        userChats: user.userChats
+    });
     try {
-        const userWithId = await userService.signUp(user);
-        req.session.loggedinUser = userWithId;
-        await res.json(userWithId)
-    } catch {
-        res.status(401).send('Not Authorized')
+        await newUser.save();
+        req.session.loggedinUser = newUser;
+        await res.status(200).json(newUser);
+    } catch (err) {
+        console.log(err);
+        res.status(401).send('unAuthorized');
+    }
+});
+
+//login
+
+router.post('/', async (req, res) => {
+    const user = req.body;
+    try {
+        const currUser = await User.findOne({username: user.username, password: user.password}).exec();
+        if (currUser) {
+            req.session.loggedinUser = currUser;
+            await res.status(200).json(currUser);
+        } else {
+            res.status(404).json('No valid entry found with the provided username or password');
+        }
+    } catch (err) {
+        console.log('cant login in route', err);
+        res.status(401).send();
     }
 });
 
@@ -51,11 +47,15 @@ router.post('/signup', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const userId = req.params.id;
-    const user = await userService.getById(userId);
     try {
-        await res.json(user)
-    } catch {
-        res.status(404).send('UNKNOWN item')
+        const user = await User.findById(userId).exec();
+        if (user) {
+            await res.status(200).json(user);
+        } else {
+            res.status(404).json('No valid entry found with the provided Id');
+        }
+    } catch (err) {
+        res.status(500).json(err);
     }
 });
 

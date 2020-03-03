@@ -1,4 +1,3 @@
-import util from "./util";
 import Axios from 'axios';
 
 
@@ -40,39 +39,21 @@ async function logOut() {
     }
 }
 
-async function loadDefaultChats() {
+async function loadChats() {
     try {
-        const res = await Axios.get(`http://localhost:3001/api/chat/default`);
+        const res = await Axios.get(`http://localhost:3001/api/chat/`);
         return res.data;
     } catch (err) {
         throw err;
     }
 }
 
-async function addUserChat(chat:any) {
-    try {
-        const res = await Axios.post(`http://localhost:3001/api/chat/addChat`, {chat:chat});
-        return res.data;
-    } catch (err) {
-        throw err;
-    }
-}
 
 async function updateUser() {
     const user = getLoggedinUser();
     try {
         const res = await Axios.get(`http://localhost:3001/api/user/${user._id}`);
         sessionStorage.setItem('LoggedUser', JSON.stringify(res.data));
-        return res.data;
-    } catch (err) {
-        throw err;
-    }
-}
-
-async function getUserChatsList() {
-    const user = getLoggedinUser();
-    try {
-        const res = await Axios.get(`http://localhost:3001/api/chat/userchats/${user._id}`);
         return res.data;
     } catch (err) {
         throw err;
@@ -89,8 +70,14 @@ async function addFriend(userId:any) {
     }
 }
 
-
-
+async function addUserChat(chat:any) {
+    try {
+        const res = await Axios.post(`http://localhost:3001/api/chat//addChat`, {chat});
+        return res.data;
+    } catch (err) {
+        throw err;
+    }
+}
 
 
 export default {
@@ -98,11 +85,10 @@ export default {
     logOut,
     signUp,
     getLoggedinUser,
-    loadDefaultChats,
-    addUserChat,
+    loadChats,
     updateUser,
-    getUserChatsList,
-    addFriend
+    addFriend,
+    addUserChat
 }
 
 

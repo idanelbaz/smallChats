@@ -1,8 +1,6 @@
 import {ThunkDispatch} from "redux-thunk";
 import * as Types from "../types/types";
 import userService from '../../services/userService'
-import history from "../../history/history";
-import store from "../store";
 
 
 export const signUpUser = (currUser: any) => {
@@ -100,21 +98,12 @@ export const setCreateNewChatModalToggle = () => {
     };
 };
 
-export const setUserChatsListFromLocal = () => {
-    return async (dispatch: ThunkDispatch<{}, {}, any>) => {
-        const chats = await userService.getUserChatsList();
-        dispatch({
-            type: Types.SET_FROM_LOCAL_USER_CHAT_LIST,
-            payload: chats
-        });
-    };
-};
 
-export const setDefaultChatsList = () => {
+export const setChatsList = () => {
     return async (dispatch: ThunkDispatch<{}, {}, any>) => {
-        let chats = await userService.loadDefaultChats();
+        let chats = await userService.loadChats();
         dispatch({
-            type: Types.SET_DEFAULT_CHATS,
+            type: Types.SET_CHATS_LIST,
             payload: chats
         });
     };

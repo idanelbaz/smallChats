@@ -3,7 +3,7 @@ import "./Chat.css";
 import socket from "../../services/socket.service";
 import {Redirect} from "react-router";
 import {useSelector, useDispatch} from "react-redux";
-import {setChosenChat, setDefaultChatsList} from '../../store/actions/userActions';
+import {setChosenChat, setChatsList} from '../../store/actions/userActions';
 import {getCurrUser, getChosenChat, getChatsList} from "../../store/selectors/selectors.";
 import {useHistory} from "react-router-dom";
 import util from "../../services/util";
@@ -37,7 +37,7 @@ console.log(chosenChat)
         return () => {
             if (currUser) {
                 socket.emit("logout from room", chosenChat._id, currUser);
-                dispatch(setDefaultChatsList());
+                dispatch(setChatsList());
             }
         }
     }, []);

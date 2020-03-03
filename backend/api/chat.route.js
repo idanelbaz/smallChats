@@ -1,32 +1,17 @@
-const chatService = require('../services/chatService');
 const express = require('express');
 const router = express.Router();
-
+const mongoose = require('mongoose');
+const Chat = require('../api/models/chat');
 module.exports = router;
 
 
-// if need auth - use this
-function requireAuth(req, res, next) {
-    // const user = req.session.loggedinUser
-    // if (!user) return res.status(401).send('Unauthenticated');
-    next();
-}
-
-function requireAdmin(req, res, next) {
-    // const user = req.session.loggedinUser
-    // if (!user) return res.status(401).send('Unauthenticated');
-    // if (user.isAdmin===false) return res.status(403).send('UnPrivileged');
-    next();
-}
-
-
-//get all default chats List
-router.get('/default', async (req, res) => {
+//get all chats
+router.get('/', async (req, res) => {
     try {
-        const chats = await chatService.queryDefault();
-        await res.json(chats)
+        const chats = await Chat.find().exec();
+        await res.status(200).json(chats)
     } catch {
-        res.status(404).send('Unable to load items')
+        res.status(500).send('Unable to load items');
     }
 });
 
@@ -35,34 +20,38 @@ router.get('/default', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const chatId = req.params.id;
-    const chat = await chatService.getById(chatId);
     try {
-        await res.json(chat)
-    } catch {
-        res.status(404).send('UNKNOWN item')
-    }
-});
-
-router.get('/userchats/:id', async (req, res) => {
-    const userId = req.params.id;
-    const chats = await chatService.getAllUserChats(userId);
-    try {
-        await res.json(chats)
-    } catch {
-        res.status(404).send('UNKNOWN item')
+        const chat = await Chat.findById(chatId).exec();
+        if (chat) {
+            await res.status(200).json(chat);
+        } else {
+            res.status(404).json('No valid entry found with the provided Id');
+        }
+    } catch (err) {
+        res.status(500).json(err);
     }
 });
 
 
 // chat Add
 
-router.post('/addChat', requireAuth, async (req, res) => {
+router.post('/addChat', async (req, res) => {
     const chat = req.body.chat;
+    const newChat = new Chat({
+        _id: new mongoose.Types.ObjectId(),
+        title: chat.title,
+        backgroundColor: chat.backgroundColor,
+        invited: chat.invited,
+        msgs: chat.msgs,
+        usersInRoom: chat.usersInRoom,
+        owner: chat.owner
+    });
     try {
-        const userChats = await chatService.add(chat);
-        await res.json(userChats);
-    } catch {
-        res.status(500).send('Could Not Add')
+        await newChat.save();
+        await res.status(200).json(newChat);
+    } catch (err) {
+        console.log(err);
+        res.status(401).send('unAuthorized');
     }
 });
 

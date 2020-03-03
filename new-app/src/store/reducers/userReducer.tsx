@@ -6,7 +6,6 @@ interface IUserState {
     chosenChat: any,
     isMenuOpen: any,
     isCreateChatOpen: any,
-    userChatList: any,
     errorLogin:any,
 }
 
@@ -16,7 +15,6 @@ export const userInitState = {
     chosenChat: null,
     isMenuOpen: false,
     isCreateChatOpen: false,
-    userChatList: [],
     errorLogin:false
 };
 
@@ -45,22 +43,12 @@ const userReducer = (
                 ...state,
                 isCreateChatOpen: !state.isCreateChatOpen
             };
-        case Types.ADD_ITEM_TO_USER_CHAT_LIST:
-            return {
-                ...state,
-                userChatList: [...state.userChatList, action.payload]
-            };
-        case Types.SET_FROM_LOCAL_USER_CHAT_LIST:
-            return {
-                ...state,
-                userChatList: action.payload
-            };
         case Types.SET_ERROR_LOGIN:
             return {
                 ...state,
                 errorLogin: action.payload
             };
-        case Types.SET_DEFAULT_CHATS:
+        case Types.SET_CHATS_LIST:
             return {
                 ...state,
                 chatsList: action.payload

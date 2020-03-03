@@ -1,5 +1,7 @@
 const socketIO = require('socket.io');
-const chatService = require('../services/chatService');
+const mongoose = require('mongoose');
+const Chat = require('../api/models/chat');
+const User = require('../api/models/user');
 
 
 let io;
@@ -33,23 +35,18 @@ function setup(http) {
             const updatedRoom = await saveMsgs(roomId, msg);
             io.in(roomId).emit('got msg', updatedRoom)
         });
-        // socket.on('user typing', ({user}) => {
-        //     socket.broadcast.emit('user isTyping', `${user} is typing...`)
-        // });
-
-        // socket.on('test users chat', members => {
-        //     if (members[0] === null || members[1] === null) return;
-        //     members.sort((a, b) => a.userName > b.userName ? 1 : -1)
-        //     socket.join(members[0]._id + members[1]._id)
-        //         // console.log('JOINING',members[0]._id + members[1]._id)
-        // })
     });
 }
 
 async function addUsersToRoom(roomId, user) {
     try {
-        await chatService.addUserToRoom(roomId, user);
-        return await chatService.getById(roomId);
+        await Chat.updateOne({_id: roomId}, {$push: {usersInRoom: user}}).exec();
+        const chat = await Chat.findById(roomId).exec();
+        if (chat) {
+            return chat;
+        } else {
+            return null;
+        }
     } catch (err) {
         console.log(err)
     }
@@ -57,8 +54,13 @@ async function addUsersToRoom(roomId, user) {
 
 async function removeUserFromRoom(roomId, userId) {
     try {
-        await chatService.removeUserFromRoom(roomId, userId);
-        return await chatService.getById(roomId);
+        await Chat.updateOne({_id: roomId}, {$pull: {usersInRoom: {_id: userId}}}).exec();
+        const chat = await Chat.findById(roomId).exec();
+        if (chat) {
+            return chat;
+        } else {
+            return null;
+        }
     } catch (err) {
         console.log(err)
     }
@@ -66,8 +68,13 @@ async function removeUserFromRoom(roomId, userId) {
 
 async function saveMsgs(roomId, msg) {
     try {
-        await chatService.addMsgToRoom(roomId, msg);
-        return await chatService.getById(roomId);
+        await Chat.updateOne({_id: roomId}, {$push: {msgs: msg}}).exec();
+        const chat = await Chat.findById(roomId).exec();
+        if (chat) {
+            return chat;
+        } else {
+            return null;
+        }
     } catch (err) {
         console.log(err)
     }

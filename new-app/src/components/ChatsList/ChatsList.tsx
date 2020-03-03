@@ -2,8 +2,8 @@ import React, {useEffect} from "react";
 import "./ChatsList.css";
 import {Redirect} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {setUserChatsListFromLocal, setDefaultChatsList} from '../../store/actions/userActions';
-import {getChatsList, getCurrUser, getUserChatList} from "../../store/selectors/selectors.";
+import {setChatsList} from '../../store/actions/userActions';
+import {getChatsList, getCurrUser} from "../../store/selectors/selectors.";
 import {useHistory} from "react-router-dom";
 import ChatItemList from "../ChatItemList/ChatItemList";
 
@@ -12,7 +12,6 @@ const ChatsList: React.FC = () => {
     const history = useHistory();
     const currUser = useSelector(getCurrUser);
     const chatsList = useSelector(getChatsList);
-    const userChatsList = useSelector(getUserChatList);
 
 
     useEffect(() => {
@@ -20,8 +19,7 @@ const ChatsList: React.FC = () => {
             history.push(`/home`);
         }
         else {
-            dispatch(setDefaultChatsList());
-            dispatch(setUserChatsListFromLocal());
+            dispatch(setChatsList());
         }
     }, [currUser]);
 
@@ -35,15 +33,19 @@ const ChatsList: React.FC = () => {
                 {chatsList.length > 0 &&
                 <div className='chatsListContainer'>
                     {chatsList.map((chat: any) => {
-                        return <ChatItemList  key={chat._id} chat={chat}/>
+                        if(chat.owner === 'admin') {
+                            return <ChatItemList  key={chat._id} chat={chat}/>
+                        }
                     })
                     }
                 </div>
                 }
-                {userChatsList.length > 0 &&
+                {chatsList.length > 0 &&
                 <div className='userChatsListContainer'>
-                    {userChatsList.map((chat: any) => {
-                        return <ChatItemList key={chat._id} chat={chat}/>
+                    {chatsList.map((chat: any) => {
+                        if(chat.owner === currUser._id) {
+                            return <ChatItemList  key={chat._id} chat={chat}/>
+                        }
                     })
                     }
                 </div>
