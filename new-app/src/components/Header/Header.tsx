@@ -48,6 +48,10 @@ const Header: React.FC = () => {
         dispatch(setMenuToggle())
     };
 
+    const userNameToShow = () => {
+        return currUser.email.substring(0, currUser.email.lastIndexOf("@"));
+    };
+
     return (
         <>
             <div className='headerContainer'>
@@ -59,7 +63,7 @@ const Header: React.FC = () => {
                     <div className='menu' onClick={openMenu}>
                         {isMenuOpen &&
                         <div className='openMenu'>
-                            <div className='heyUser'>Hi {currUser.username}</div>
+                            <div className='heyUser'>Hi {userNameToShow()}</div>
                             <div className='innerMenuContainer'>
                                 <div title='Log Out' onClick={handleClickLogOut} className='logOutContainer'>
                                     <div className='logOutSvg'/>
@@ -80,7 +84,7 @@ const Header: React.FC = () => {
             </div>
             <div onClick={() => dispatch(setMenuToggle())} className='coverAllPage'/>
             {isCreateNewChatModal &&
-                <CreateNewChatModal/>
+            <CreateNewChatModal/>
             }
         </>
     );

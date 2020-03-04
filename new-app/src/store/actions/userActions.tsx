@@ -5,11 +5,22 @@ import userService from '../../services/userService'
 
 export const signUpUser = (currUser: any) => {
     return async (dispatch: ThunkDispatch<{}, {}, any>) => {
-        currUser = await userService.signUp(currUser);
-        dispatch({
-            type: Types.SET_CURR_USER,
-            payload: currUser
-        });
+        try {
+            currUser = await userService.signUp(currUser);
+            dispatch({
+                type: Types.SET_CURR_USER,
+                payload: currUser
+            });
+            dispatch({
+                type: Types.SET_ERROR_LOGIN,
+                payload: false
+            });
+        } catch (e) {
+            dispatch({
+                type: Types.SET_ERROR_LOGIN,
+                payload: true
+            });
+        }
     };
 };
 

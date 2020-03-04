@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c79ca00a-acab-4049-a6f2-6f35528b41a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/api/models/chat.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/api/models/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/api/chat.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/chat.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/api/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/models/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/api/user.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/user.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/services/chatService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/services/dbService.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/services/socket.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/services/socket.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/services/userService.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +64,7 @@
       <updated>1582473979652</updated>
       <workItem from="1582473982099" duration="108040000" />
       <workItem from="1583223849574" duration="25000" />
-      <workItem from="1583240836640" duration="11008000" />
+      <workItem from="1583240836640" duration="20991000" />
     </task>
     <servers />
   </component>

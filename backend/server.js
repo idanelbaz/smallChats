@@ -9,10 +9,13 @@ const session = require('express-session');
 const socketService = require('./services/socket.service.js');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://idanel:saribeni12@cluster0-cquxv.mongodb.net/newReactProjChats?retryWrites=true&w=majority',{
+
+mongoose.connect('mongodb://localhost/newReactProjChats',{
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+//mongodb+srv://idanel:saribeni12@cluster0-cquxv.mongodb.net/newReactProjChats?retryWrites=true&w=majority
+
 
 socketService.setup(http);
 

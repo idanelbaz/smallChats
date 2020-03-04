@@ -28,10 +28,14 @@ const UserInChatLi: React.FC<IUserInChatLiProps> = ({user}) => {
         console.log(user)
     };
 
+    const userNameToShow = (email: string) => {
+        return email.substring(0, email.lastIndexOf("@"));
+    };
+
     return (
         <>
             {user._id != currUser._id &&
-            <li className='userItem' onClick={toggleUserModal}>{user.username}
+            <li className='userItem' onClick={toggleUserModal}>{userNameToShow(user.email)}
                 {isUserModal &&
                 <div className="userItemModal">
                     <div className="addFriendContainer">
@@ -42,9 +46,8 @@ const UserInChatLi: React.FC<IUserInChatLiProps> = ({user}) => {
             </li>
             }
             {user._id === currUser._id &&
-            <li className='userItemIsUser'>{user.username}</li>
+            <li className='userItemIsUser'>{userNameToShow(user.email)}</li>
             }
-
         </>
     );
 };

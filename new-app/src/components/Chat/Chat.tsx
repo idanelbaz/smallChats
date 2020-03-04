@@ -17,7 +17,7 @@ const Chat: React.FC = () => {
     const chosenChat = useSelector(getChosenChat);
     const defaultChatsList = useSelector(getChatsList);
     const [newMsg, setNewMsg] = useState('');
-console.log(chosenChat)
+    console.log(chosenChat)
     useEffect(() => {
         socket.on("got msg", (chat: any) => {
             dispatch(setChosenChat(chat));
@@ -77,6 +77,10 @@ console.log(chosenChat)
         } as React.CSSProperties
     };
 
+    const userNameToShow = (email: string) => {
+        return email.substring(0, email.lastIndexOf("@"));
+    };
+
     return (
         <>
             {currUser === null &&
@@ -92,7 +96,7 @@ console.log(chosenChat)
                                           key={msg._id}>{msg.txt}</p>
                             } else {
                                 return <p id={'chatMsgItemUser' + idx} className='chatMsgItemNotUser'
-                                          key={msg._id}>{msg.user.username}: {msg.txt}</p>
+                                          key={msg._id}>{userNameToShow(msg.user.email)}: {msg.txt}</p>
                             }
                         })}
                     </div>

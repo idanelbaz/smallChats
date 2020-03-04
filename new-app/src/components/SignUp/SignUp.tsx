@@ -1,16 +1,18 @@
 import React, {useEffect, useState} from "react";
 import "./SignUp.css";
 import {useSelector, useDispatch} from "react-redux";
-import {signUpUser, setCurrUserFromStorage} from '../../store/actions/userActions';
-import {getCurrUser} from "../../store/selectors/selectors.";
+import {signUpUser, setCurrUserFromStorage, setErrorLogin} from '../../store/actions/userActions';
+import {getCurrUser, getErrorLogin} from "../../store/selectors/selectors.";
 import {useHistory} from "react-router-dom";
+import swal from 'sweetalert';
 
 
 const SignUp: React.FC = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [newUser, setNewUser] = useState({username: '', password: '', userChats:[]});
+    const [newUser, setNewUser] = useState({email: '', password: '', userChats: []});
     const currUser = useSelector(getCurrUser);
+    const errorLogin = useSelector(getErrorLogin);
 
     useEffect(() => {
         dispatch(setCurrUserFromStorage());
@@ -19,10 +21,16 @@ const SignUp: React.FC = () => {
         }
     }, [currUser]);
 
-    const handleSubmit = (event: any) => {
+    useEffect(() => {
+        if(errorLogin){
+            swal("Try Again", "Email or Password are incorrect", "error");
+            dispatch(setErrorLogin())
+        }
+    }, [errorLogin]);
+
+    const handleSubmit = async (event: any) => {
         event.preventDefault();
-        dispatch(signUpUser(newUser));
-        history.push("/chatslist");
+        await dispatch(signUpUser(newUser));
     };
 
     const handleChange = (event: any) => {
@@ -41,10 +49,10 @@ const SignUp: React.FC = () => {
             <div className='SignUpContainer'>
                 <form onSubmit={handleSubmit} className='form-container'>
                     <h2>Sign up</h2>
-                    <label className='inputLabel'>User name</label>
-                    <input required className='userInput' value={newUser.username} name="username"
+                    <label className='inputLabel'>Email</label>
+                    <input required className='userInput' value={newUser.email} name="email"
                            onChange={handleChange}
-                           type="text" placeholder="Your user name"/>
+                           type="email" placeholder="Your Email"/>
                     <label className='inputLabel'>Password</label>
                     <input required className='userInput' value={newUser.password} name="password"
                            onChange={handleChange}

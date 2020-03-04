@@ -40,7 +40,7 @@ function setup(http) {
 
 async function addUsersToRoom(roomId, user) {
     try {
-        await Chat.updateOne({_id: roomId}, {$push: {usersInRoom: user}}).exec();
+        await Chat.updateOne({_id: roomId}, {$push: {usersInRoom: {_id: user._id, email: user.email}}}).exec();
         const chat = await Chat.findById(roomId).exec();
         if (chat) {
             return chat;

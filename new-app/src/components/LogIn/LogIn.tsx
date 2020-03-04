@@ -12,7 +12,7 @@ import swal from 'sweetalert';
 const LogIn: React.FC = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [newUser, setNewUser] = useState({username: '', password: ''});
+    const [newUser, setNewUser] = useState({email: '', password: ''});
     const currUser = useSelector(getCurrUser);
     const errorLogin = useSelector(getErrorLogin);
 
@@ -26,7 +26,7 @@ const LogIn: React.FC = () => {
 
     useEffect(() => {
         if(errorLogin){
-            swal("Try Again", "Username or Password are incorrect", "error");
+            swal("Try Again", "Email or Password are incorrect", "error");
             dispatch(setErrorLogin())
         }
     }, [errorLogin]);
@@ -52,10 +52,10 @@ const LogIn: React.FC = () => {
             <div className='logInContainer'>
                 <form onSubmit={handleSubmit} className='form-container'>
                     <h2>Log In</h2>
-                    <label className='inputLabel'>User name</label>
-                    <input required className='userInput' value={newUser.username} name="username"
+                    <label className='inputLabel'>Email</label>
+                    <input required className='userInput' value={newUser.email} name="email"
                            onChange={handleChange}
-                           type="text" placeholder="Your user name"/>
+                           type="email" placeholder="Your Email"/>
                     <label className='inputLabel'>Password</label>
                     <input required className='userInput' value={newUser.password} name="password"
                            onChange={handleChange}
