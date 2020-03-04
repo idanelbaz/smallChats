@@ -31,6 +31,7 @@ const Header: React.FC = () => {
     };
 
     const handleClickLogOut = () => {
+        history.push(`/home`);
         dispatch(logOut());
     };
 
