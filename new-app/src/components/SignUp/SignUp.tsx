@@ -10,7 +10,7 @@ import swal from 'sweetalert';
 const SignUp: React.FC = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [newUser, setNewUser] = useState({email: '', password: '', userChats: []});
+    const [newUser, setNewUser] = useState({email: '', password: '', userChats: [], isAdmin:false});
     const currUser = useSelector(getCurrUser);
     const errorLogin = useSelector(getErrorLogin);
 

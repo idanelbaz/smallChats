@@ -35,7 +35,8 @@ const Header: React.FC = () => {
     };
 
     const goToUserChats = () => {
-
+        dispatch(setMenuToggle());
+        history.push(`/chatslist`);
     };
 
     const openCreateNewChatModal = () => {
@@ -68,7 +69,7 @@ const Header: React.FC = () => {
                                 <div title='Log Out' onClick={handleClickLogOut} className='logOutContainer'>
                                     <div className='logOutSvg'/>
                                 </div>
-                                <div title='Your Chats' onClick={goToUserChats} className='userChatsContainer'>
+                                <div title='Chats' onClick={goToUserChats} className='userChatsContainer'>
                                     <div className='userChatsSvg'/>
                                 </div>
                                 <div title='Create New Chat' onClick={openCreateNewChatModal}

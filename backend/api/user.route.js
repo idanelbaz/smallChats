@@ -18,7 +18,7 @@ router.post('/signup', async (req, res) => {
     if (isUserExisted) {
         res.status(409).send('user already existed');
     } else {
-        const token = jwt.sign({currUser: user.email},
+        const token = jwt.sign({currUser: user.email, isAdmin: user.isAdmin},
             config.privateKey, {algorithm: 'RS256'},
             {expiresIn: '24h'}
         );
@@ -27,6 +27,7 @@ router.post('/signup', async (req, res) => {
             email: user.email,
             password: encrypte(user.password),
             userChats: user.userChats,
+            isAdmin: user.isAdmin
         });
         try {
             await newUser.save();
@@ -34,7 +35,8 @@ router.post('/signup', async (req, res) => {
                 _id: newUser._id,
                 email: newUser.email,
                 userChats: user.userChats,
-                token: token
+                token: token,
+                isAdmin: newUser.isAdmin
             });
             req.session.loggedinUser = userToReturn;
             await res.status(200).json(userToReturn);
@@ -54,7 +56,7 @@ router.post('/', async (req, res) => {
         if (currUser) {
             const isUserPassword = decrypte(user.password, currUser.password);
             if (isUserPassword) {
-                const token = jwt.sign({currUser: currUser.email,_id:currUser._id},
+                const token = jwt.sign({currUser: currUser.email,_id:currUser._id, isAdmin:currUser.isAdmin},
                     config.privateKey, {algorithm: 'RS256'},
                     {expiresIn: '24h'}
                 );
@@ -62,7 +64,8 @@ router.post('/', async (req, res) => {
                     _id: currUser._id,
                     email: currUser.email,
                     userChats: currUser.userChats,
-                    token: token
+                    token: token,
+                    isAdmin: currUser.isAdmin
                 });
                 req.session.loggedinUser = userToReturn;
                 await res.status(200).json(userToReturn);

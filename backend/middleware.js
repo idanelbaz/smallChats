@@ -13,10 +13,7 @@ const checkToken = (req, res, next) => {
     if (token) {
         jwt.verify(token, config.publicKey, (err, decoded) => {
             if (err) {
-                return res.json({
-                    success: false,
-                    message: 'Token is not valid'
-                });
+                return res.status(403).json('Not a valid token');
             } else {
                 // add the decoded to the req , the decoded is the object i putted in the token on creation
                 req.decoded = decoded;
@@ -34,5 +31,3 @@ const checkToken = (req, res, next) => {
 module.exports = {
     checkToken
 };
-
-// todo - handle err from not right token.

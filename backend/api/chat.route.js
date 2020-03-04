@@ -37,6 +37,7 @@ router.get('/:id', async (req, res) => {
 // chat Add
 
 router.post('/addChat',middleware.checkToken,async (req, res) => {
+    //req.decoded  - can identify if user is admin or not and do actions for it.
     const chat = req.body.chat;
     const newChat = new Chat({
         _id: new mongoose.Types.ObjectId(),
