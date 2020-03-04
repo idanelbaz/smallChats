@@ -35,9 +35,4 @@ module.exports = {
     checkToken
 };
 
-// the validation now is symmetric , if needed - asymmetric - need to have -
-//// verify a token asymmetric
-// var cert = fs.readFileSync('public.pem');  // get public key
-// jwt.verify(token, cert, function(err, decoded) {
-//   console.log(decoded.foo) // bar
-// });
+// todo - handle err from not right token.

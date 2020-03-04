@@ -45,7 +45,7 @@ async function loadChats() {
         headers: { Authorization: `Bearer ${user.token}`}
     };
     try {
-        const res = await Axios.get(`http://localhost:3001/api/chat/`,config);
+        const res = await Axios.get(`http://localhost:3002/api/chat/`,config);
         return res.data;
     } catch (err) {
         throw err;
@@ -68,7 +68,7 @@ async function addUserChat(chat:any) {
         headers: { Authorization: `Bearer ${user.token}`}
     };
     try {
-        const res = await Axios.post(`http://localhost:3001/api/chat//addChat`, {chat} ,config);
+        const res = await Axios.post(`http://localhost:3002/api/chat//addChat`, {chat} ,config);
         return res.data;
     } catch (err) {
         throw err;

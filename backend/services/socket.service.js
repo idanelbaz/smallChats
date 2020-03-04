@@ -1,7 +1,5 @@
 const socketIO = require('socket.io');
-const mongoose = require('mongoose');
 const Chat = require('../api/models/chat');
-const User = require('../api/models/user');
 
 
 let io;
