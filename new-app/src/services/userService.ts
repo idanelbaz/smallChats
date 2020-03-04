@@ -40,20 +40,12 @@ async function logOut() {
 }
 
 async function loadChats() {
-    try {
-        const res = await Axios.get(`http://localhost:3001/api/chat/`);
-        return res.data;
-    } catch (err) {
-        throw err;
-    }
-}
-
-
-async function updateUser() {
     const user = getLoggedinUser();
+    const config = {
+        headers: { Authorization: `Bearer ${user.token}`}
+    };
     try {
-        const res = await Axios.get(`http://localhost:3001/api/user/${user._id}`);
-        sessionStorage.setItem('LoggedUser', JSON.stringify(res.data));
+        const res = await Axios.get(`http://localhost:3001/api/chat/`,config);
         return res.data;
     } catch (err) {
         throw err;
@@ -71,8 +63,12 @@ async function addFriend(userId:any) {
 }
 
 async function addUserChat(chat:any) {
+    const user = getLoggedinUser();
+    const config = {
+        headers: { Authorization: `Bearer ${user.token}`}
+    };
     try {
-        const res = await Axios.post(`http://localhost:3001/api/chat//addChat`, {chat});
+        const res = await Axios.post(`http://localhost:3001/api/chat//addChat`, {chat} ,config);
         return res.data;
     } catch (err) {
         throw err;
@@ -86,7 +82,6 @@ export default {
     signUp,
     getLoggedinUser,
     loadChats,
-    updateUser,
     addFriend,
     addUserChat
 }

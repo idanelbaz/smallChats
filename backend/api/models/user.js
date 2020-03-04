@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
     email: {
         type: String,
         required: true,
-        validate:{
+        validate: {
             validator: validator.isEmail,
             message: '{VALUE} is not a valid email',
             isAsync: false
@@ -19,6 +19,9 @@ const userSchema = mongoose.Schema({
     userChats: {
         type: [],
         required: true
+    },
+    token: {
+        type: String
     }
 });
 

@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Chat = require('../api/models/chat');
+const middleware = require('../middleware');
 module.exports = router;
 
 
 //get all chats
-router.get('/', async (req, res) => {
+router.get('/',middleware.checkToken,async (req, res) => {
     try {
         const chats = await Chat.find().exec();
         await res.status(200).json(chats)
@@ -35,7 +36,7 @@ router.get('/:id', async (req, res) => {
 
 // chat Add
 
-router.post('/addChat', async (req, res) => {
+router.post('/addChat',middleware.checkToken,async (req, res) => {
     const chat = req.body.chat;
     const newChat = new Chat({
         _id: new mongoose.Types.ObjectId(),

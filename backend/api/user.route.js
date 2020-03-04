@@ -3,7 +3,11 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../api/models/user');
 const CryptoJS = require("crypto-js");
+const jwt = require('jsonwebtoken');
+const config = require('../config');
 module.exports = router;
+
+
 
 
 //signup
@@ -14,20 +18,24 @@ router.post('/signup', async (req, res) => {
     if (isUserExisted) {
         res.status(409).send('user already existed');
     } else {
+        const token = jwt.sign({currUser: user.email},
+            config.privateKey, {algorithm: 'RS256'},
+            {expiresIn: '24h'}
+        );
         const newUser = new User({
             _id: new mongoose.Types.ObjectId(),
             email: user.email,
             password: encrypte(user.password),
-            userChats: user.userChats
+            userChats: user.userChats,
         });
         try {
             await newUser.save();
             const userToReturn = new User({
                 _id: newUser._id,
                 email: newUser.email,
-                userChats: user.userChats
+                userChats: user.userChats,
+                token: token
             });
-            console.log(newUser.password);
             req.session.loggedinUser = userToReturn;
             await res.status(200).json(userToReturn);
         } catch (err) {
@@ -46,10 +54,15 @@ router.post('/', async (req, res) => {
         if (currUser) {
             const isUserPassword = decrypte(user.password, currUser.password);
             if (isUserPassword) {
+                const token = jwt.sign({currUser: currUser.email,_id:currUser._id},
+                    config.privateKey, {algorithm: 'RS256'},
+                    {expiresIn: '24h'}
+                );
                 const userToReturn = new User({
                     _id: currUser._id,
                     email: currUser.email,
-                    userChats: currUser.userChats
+                    userChats: currUser.userChats,
+                    token: token
                 });
                 req.session.loggedinUser = userToReturn;
                 await res.status(200).json(userToReturn);
@@ -97,5 +110,5 @@ function decrypte(userPassword, encryptedPassword) {
     const bytes = CryptoJS.AES.decrypt(encryptedPassword, 'secret key 123');
     const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
     return userPassword === decryptedData
-
 }
+

@@ -3,7 +3,7 @@ import "./CreateNewChatModal.css";
 import {useSelector, useDispatch} from "react-redux";
 import {
     setCreateNewChatModalToggle,
-    updateCurrUserFromStorage
+    addChatToList
 } from '../../store/actions/userActions';
 import {getCurrUser} from "../../store/selectors/selectors.";
 import userService from '../../services/userService';
@@ -15,8 +15,7 @@ const CreateNewChatModal: React.FC = () => {
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
-        await userService.addUserChat(newChat);
-        dispatch(updateCurrUserFromStorage());
+        dispatch(addChatToList(newChat));
         dispatch(setCreateNewChatModalToggle());
     };
 

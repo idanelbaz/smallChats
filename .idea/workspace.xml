@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c79ca00a-acab-4049-a6f2-6f35528b41a8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/middleware.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/api/chat.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/chat.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/api/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/models/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/api/user.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/user.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/services/socket.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/services/socket.service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,11 +34,12 @@
     <property name="ts.external.directory.path" value="C:\workspace\newReactApp\new-app\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\workspace\newReactApp\new-app\src\components\HomePage" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\workspace\newReactApp\new-app\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\newReactApp\backend" />
+      <recent name="C:\workspace\newReactApp\new-app\src\components\HomePage" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -64,7 +66,8 @@
       <updated>1582473979652</updated>
       <workItem from="1582473982099" duration="108040000" />
       <workItem from="1583223849574" duration="25000" />
-      <workItem from="1583240836640" duration="20991000" />
+      <workItem from="1583240836640" duration="21683000" />
+      <workItem from="1583320380458" duration="10627000" />
     </task>
     <servers />
   </component>
@@ -72,6 +75,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="2638" y="309" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583330457144">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2638" y="309" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680/1920.0.1920.1040/3840.0.1920.1040@1920.0.1920.1040" timestamp="1583330457144" />
     <state x="2610" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583248803379">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -80,10 +87,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1280.680/1920.0.1920.1040/3840.0.1920.1040@1920.0.1920.1040" timestamp="1583241232491" />
-    <state x="2660" y="274" key="FileChooserDialogImpl" timestamp="1583223872575">
+    <state x="2660" y="274" key="FileChooserDialogImpl" timestamp="1583319465943">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2660" y="274" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040/3840.0.1920.1040@1920.0.1920.1040" timestamp="1583223872575" />
+    <state x="2660" y="274" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040/3840.0.1920.1040@1920.0.1920.1040" timestamp="1583319465942" />
     <state x="2524" y="134" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582789885384">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

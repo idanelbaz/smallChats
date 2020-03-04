@@ -55,16 +55,6 @@ export const setCurrUserFromStorage = () => {
     };
 };
 
-export const updateCurrUserFromStorage = () => {
-    return async (dispatch: ThunkDispatch<{}, {}, any>) => {
-        let currUser = await userService.updateUser();
-        dispatch({
-            type: Types.SET_CURR_USER,
-            payload: currUser
-        });
-    };
-};
-
 export const setErrorLogin = () => {
     return async (dispatch: ThunkDispatch<{}, {}, any>) => {
         dispatch({
@@ -116,6 +106,16 @@ export const setChatsList = () => {
         dispatch({
             type: Types.SET_CHATS_LIST,
             payload: chats
+        });
+    };
+};
+
+export const addChatToList = (chat:any) => {
+    return async (dispatch: ThunkDispatch<{}, {}, any>) => {
+        const chatToAdd = await userService.addUserChat(chat);
+        dispatch({
+            type: Types.ADD_ITEM_TO_USER_CHAT_LIST,
+            payload: chatToAdd
         });
     };
 };

@@ -53,6 +53,11 @@ const userReducer = (
                 ...state,
                 chatsList: action.payload
             };
+        case Types.ADD_ITEM_TO_USER_CHAT_LIST:
+            return {
+                ...state,
+                chatsList: [...state.chatsList,action.payload]
+            };
         default:
             return state;
     }
