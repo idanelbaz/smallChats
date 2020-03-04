@@ -102,21 +102,35 @@ export const setCreateNewChatModalToggle = () => {
 
 export const setChatsList = () => {
     return async (dispatch: ThunkDispatch<{}, {}, any>) => {
-        let chats = await userService.loadChats();
-        dispatch({
-            type: Types.SET_CHATS_LIST,
-            payload: chats
-        });
+        try{
+            let chats = await userService.loadChats();
+            dispatch({
+                type: Types.SET_CHATS_LIST,
+                payload: chats
+            });
+        }
+        catch(err){ 
+            dispatch({
+                type: Types.SET_CHATS_LIST,
+                payload: []
+            });
+        }
     };
 };
 
 export const addChatToList = (chat:any) => {
     return async (dispatch: ThunkDispatch<{}, {}, any>) => {
-        const chatToAdd = await userService.addUserChat(chat);
-        dispatch({
-            type: Types.ADD_ITEM_TO_USER_CHAT_LIST,
-            payload: chatToAdd
-        });
+        try{
+            const chatToAdd = await userService.addUserChat(chat);
+            dispatch({
+                type: Types.ADD_ITEM_TO_USER_CHAT_LIST,
+                payload: chatToAdd
+            });
+        }
+        catch(err){
+                console.log(err);
+        }
+
     };
 };
 

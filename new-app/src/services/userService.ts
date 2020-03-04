@@ -41,7 +41,6 @@ async function logOut() {
 
 async function loadChats() {
     const user = getLoggedinUser();
-    if (user) {
         const config = {
             headers: { Authorization: `Bearer ${user.token}`}
         };
@@ -51,10 +50,6 @@ async function loadChats() {
         } catch (err) {
             throw err;
         }
-    }
-    else { 
-        return [];
-    }
 }
 
 async function addFriend(userId:any) {
