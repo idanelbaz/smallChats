@@ -21,7 +21,6 @@
 .userChatsListContainer{
     display: flex;
     flex-direction: row;
-    height: 50%;
     box-sizing: border-box;
     flex-wrap: wrap;
     background-color: aquamarine;

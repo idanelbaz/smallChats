@@ -50,6 +50,7 @@ const Chat: React.FC = () => {
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
+        if(newMsg.length === 0) return;
         let message = {user: currUser, txt: newMsg, _id: util.generateUUID()};
         socket.emit("chat msg", message, currUser, chosenChat._id);
         setNewMsg('');
@@ -81,6 +82,16 @@ const Chat: React.FC = () => {
         return email.substring(0, email.lastIndexOf("@"));
     };
 
+    const handleTxt = (chat:any) => {
+        let newStr ='';
+        if (chat.title.length > 9)  {
+            newStr += chat.title.substr(0, 9);
+            newStr += '...';
+            return newStr;
+        }
+        else return chat.title
+    };
+
     return (
         <>
             {currUser === null &&
@@ -110,8 +121,8 @@ const Chat: React.FC = () => {
                         })
                         }
                     </ul>
-                    <div className='chatNameLogo' style={setBackGroundColor()}>
-                        {chosenChat.title}
+                    <div title={chosenChat.title} className='chatNameLogo' style={setBackGroundColor()}>
+                        {handleTxt(chosenChat)}
                     </div>
                 </div>
             </div>
