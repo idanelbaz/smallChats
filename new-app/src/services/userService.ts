@@ -41,15 +41,15 @@ async function logOut() {
 
 async function loadChats() {
     const user = getLoggedinUser();
-    const config = {
-        headers: { Authorization: `Bearer ${user.token}`}
-    };
-    try {
-        const res = await Axios.get(`http://localhost:3002/api/chat/`,config);
-        return res.data;
-    } catch (err) {
-        throw err;
-    }
+        const config = {
+            headers: { Authorization: `Bearer ${user.token}`}
+        };
+        try {
+            const res = await Axios.get(`http://localhost:3002/api/chat/`,config);
+            return res.data;
+        } catch (err) {
+            throw err;
+        }
 }
 
 async function addFriend(userId:any) {
